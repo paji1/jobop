@@ -339,7 +339,7 @@ export default function HomePage() {
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.8, delay: 1.4 }}
-									className=" absolute -bottom-12 -left-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-2 z-20"
+									className=" absolute   -bottom-12 -left-12 bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-2 z-20"
 								>
 									
 										<Image
@@ -348,7 +348,7 @@ export default function HomePage() {
 											width={200}
 											height={100}
 											style={{ transform: "translate(-16px, 16px)" }}
-											className="mx-auto rounded-2xl shadow-2xl"
+											className="mx-auto "
 											priority
 										/>
 										{/* Floating badge on the image */}
