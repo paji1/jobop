@@ -45,7 +45,6 @@ import { CTASection } from "@/components/sections/cta-section";
 import { Footer } from "@/components/sections/footer";
 
 export default function ContactPage() {
-	const router = useRouter();
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -79,9 +78,7 @@ export default function ContactPage() {
 		}, 1000);
 	};
 
-	const goToSection = (sectionId: string, router: any) => {
-		router.push(`/${sectionId !== "home" ? `#${sectionId}` : ""}`);
-	};
+	
 	const contactMethods = [
 		{
 			icon: Mail,
@@ -142,77 +139,7 @@ export default function ContactPage() {
 			<GridPattern className="absolute inset-0 opacity-20" />
 			<Meteors number={30} />
 
-			{/* Header */}
-			<motion.header
-				initial={{ opacity: 0, y: -20 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
-				className="relative z-50 border-b bg-white/80 backdrop-blur-sm dark:bg-black/80 dark:border-gray-800"
-			>
-				<div className="container mx-auto px-4 py-4 flex items-center justify-between">
-					<Link
-						href="/"
-						className="flex items-center space-x-2 group"
-					>
-						<motion.div
-							whileHover={{ scale: 1.05 }}
-							transition={{
-								type: "spring",
-								stiffness: 400,
-								damping: 10,
-							}}
-							className="relative"
-						>
-							<Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-							<div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-						</motion.div>
-						<span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-							JobOP
-						</span>
-					</Link>
-					<nav className="hidden md:flex items-center space-x-8">
-						<button
-							onClick={() => goToSection("home", router)}
-							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-						>
-							Home
-						</button>
-						<button
-							onClick={() => goToSection("features", router)}
-							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-						>
-							Features
-						</button>
-						<button
-							onClick={() => goToSection("team", router)}
-							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-						>
-							Team
-						</button>
-						<Link href="/contact">
-							<span className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium cursor-pointer">
-								Contact
-							</span>
-						</Link>
-					</nav>
-					<div className="flex items-center space-x-4">
-						<ThemeToggle />
-						<Link href="/auth/login">
-							<Button
-								variant="ghost"
-								className="hover:bg-blue-50 dark:hover:bg-blue-900/20"
-							>
-								Login
-							</Button>
-						</Link>
-						<Link href="/auth/register">
-							<Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-								Get Started
-							</Button>
-						</Link>
-					</div>
-				</div>
-			</motion.header>
+			
 
 			<div className="relative z-10">
 				{/* Hero Section */}
@@ -698,8 +625,6 @@ export default function ContactPage() {
 				{/* CTA Section */}
 				<CTASection />
 
-				{/* Footer */}
-				<Footer />
 			</div>
 		</div>
 	);
