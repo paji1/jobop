@@ -111,7 +111,7 @@ export function Footer() {
 								</div>
 								<div className="flex items-center space-x-3 text-gray-300">
 									<MapPin className="h-5 w-5 text-blue-400" />
-									<span>San Francisco, CA</span>
+									<span>Morocco, CA</span>
 								</div>
 							</div>
 
@@ -237,7 +237,7 @@ export function Footer() {
 						<span className="flex items-center space-x-1">
 							<span>Made with</span>
 							<Heart className="h-4 w-4 text-red-500 fill-current" />
-							<span>in San Francisco</span>
+							<span>in Morocco</span>
 						</span>
 					</div>
 

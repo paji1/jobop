@@ -41,6 +41,8 @@ import { Meteors } from "@/components/ui/meteors";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { CTASection } from "@/components/sections/cta-section";
+import { Footer } from "@/components/sections/footer";
 
 export default function ContactPage() {
 	const router = useRouter();
@@ -78,9 +80,7 @@ export default function ContactPage() {
 	};
 
 	const goToSection = (sectionId: string, router: any) => {
-			router.push(`/${sectionId !== "home" ? `#${sectionId}` : ""}`);
-
-		
+		router.push(`/${sectionId !== "home" ? `#${sectionId}` : ""}`);
 	};
 	const contactMethods = [
 		{
@@ -694,171 +694,12 @@ export default function ContactPage() {
 					</div>
 				</section>
 
+				{/* Footer */}
 				{/* CTA Section */}
-				<section className="py-20 relative overflow-hidden">
-					<div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700"></div>
-					<GridPattern className="absolute inset-0 opacity-20" />
-					<Meteors number={15} />
-
-					<div className="container mx-auto px-4 text-center relative z-10">
-						<motion.div
-							initial={{ opacity: 0, y: 30 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8 }}
-							viewport={{ once: true }}
-							className="max-w-4xl mx-auto"
-						>
-							<h2 className="text-4xl font-bold text-white mb-6">
-								Ready to Get Started?
-							</h2>
-							<p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-								Join thousands of professionals and companies
-								who trust JobOP for their talent needs.
-							</p>
-							<div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-								<Link href="/auth/register?role=staff">
-									<Button
-										size="lg"
-										className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
-									>
-										Join as Professional
-									</Button>
-								</Link>
-								<Link href="/auth/register?role=company">
-									<Button
-										size="lg"
-										variant="outline"
-										className="px-8 py-4 text-lg font-semibold text-white border-white hover:bg-white/10"
-									>
-										Hire Talent
-									</Button>
-								</Link>
-							</div>
-						</motion.div>
-					</div>
-				</section>
+				<CTASection />
 
 				{/* Footer */}
-				<footer className="bg-gray-900 dark:bg-black text-white py-12">
-					<div className="container mx-auto px-4">
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6 }}
-							viewport={{ once: true }}
-							className="grid md:grid-cols-4 gap-8"
-						>
-							<div className="space-y-4">
-								<div className="flex items-center space-x-2">
-									<Briefcase className="h-6 w-6" />
-									<span className="text-xl font-bold">
-										JobOP
-									</span>
-								</div>
-								<p className="text-gray-400 text-sm">
-									Connecting top talent with leading companies
-									through AI-powered matching.
-								</p>
-							</div>
-
-							<div>
-								<h4 className="font-semibold mb-4">Product</h4>
-								<ul className="space-y-2 text-sm text-gray-400">
-									<li>
-										<Link
-											href="/features"
-											className="hover:text-white transition-colors"
-										>
-											Features
-										</Link>
-									</li>
-									<li>
-										<Link
-											href="/pricing"
-											className="hover:text-white transition-colors"
-										>
-											Pricing
-										</Link>
-									</li>
-									<li>
-										<Link
-											href="/integrations"
-											className="hover:text-white transition-colors"
-										>
-											Integrations
-										</Link>
-									</li>
-								</ul>
-							</div>
-
-							<div>
-								<h4 className="font-semibold mb-4">Support</h4>
-								<ul className="space-y-2 text-sm text-gray-400">
-									<li>
-										<Link
-											href="/contact"
-											className="hover:text-white transition-colors"
-										>
-											Contact Us
-										</Link>
-									</li>
-									<li>
-										<Link
-											href="/help"
-											className="hover:text-white transition-colors"
-										>
-											Help Center
-										</Link>
-									</li>
-									<li>
-										<Link
-											href="/status"
-											className="hover:text-white transition-colors"
-										>
-											System Status
-										</Link>
-									</li>
-								</ul>
-							</div>
-
-							<div>
-								<h4 className="font-semibold mb-4">Company</h4>
-								<ul className="space-y-2 text-sm text-gray-400">
-									<li>
-										<Link
-											href="/about"
-											className="hover:text-white transition-colors"
-										>
-											About Us
-										</Link>
-									</li>
-									<li>
-										<Link
-											href="/careers"
-											className="hover:text-white transition-colors"
-										>
-											Careers
-										</Link>
-									</li>
-									<li>
-										<Link
-											href="/blog"
-											className="hover:text-white transition-colors"
-										>
-											Blog
-										</Link>
-									</li>
-								</ul>
-							</div>
-						</motion.div>
-
-						<div className="border-t border-gray-800 mt-8 pt-8 text-center">
-							<p className="text-gray-400 text-sm">
-								© 2024 JobOP. All rights reserved.
-							</p>
-						</div>
-					</div>
-				</footer>
+				<Footer />
 			</div>
 		</div>
 	);
