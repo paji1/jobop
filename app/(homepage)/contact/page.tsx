@@ -78,7 +78,6 @@ export default function ContactPage() {
 		}, 1000);
 	};
 
-	
 	const contactMethods = [
 		{
 			icon: Mail,
@@ -138,8 +137,6 @@ export default function ContactPage() {
 			/>
 			<GridPattern className="absolute inset-0 opacity-20" />
 			<Meteors number={30} />
-
-			
 
 			<div className="relative z-10">
 				{/* Hero Section */}
@@ -624,7 +621,6 @@ export default function ContactPage() {
 				{/* Footer */}
 				{/* CTA Section */}
 				<CTASection />
-
 			</div>
 		</div>
 	);

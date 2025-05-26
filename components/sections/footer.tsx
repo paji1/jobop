@@ -45,17 +45,17 @@ export function Footer() {
 	};
 
 	const socialLinks = [
-		{ name: "Twitter", icon: Twitter, href: "https://twitter.com/jobop" },
+		{ name: "Twitter", icon: Twitter, href: "https://twitter.com/JobOP" },
 		{
 			name: "LinkedIn",
 			icon: Linkedin,
-			href: "https://linkedin.com/company/jobop",
+			href: "https://linkedin.com/company/JobOP",
 		},
-		{ name: "GitHub", icon: Github, href: "https://github.com/jobop" },
+		{ name: "GitHub", icon: Github, href: "https://github.com/JobOP" },
 		{
 			name: "Instagram",
 			icon: Instagram,
-			href: "https://instagram.com/jobop",
+			href: "https://instagram.com/JobOP",
 		},
 	];
 
@@ -103,7 +103,7 @@ export function Footer() {
 							<div className="space-y-3 mb-6">
 								<div className="flex items-center space-x-3 text-gray-300">
 									<Mail className="h-5 w-5 text-blue-400" />
-									<span>hello@jobop.com</span>
+									<span>hello@JobOP.com</span>
 								</div>
 								<div className="flex items-center space-x-3 text-gray-300">
 									<Phone className="h-5 w-5 text-blue-400" />

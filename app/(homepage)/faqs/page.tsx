@@ -36,8 +36,8 @@ const faqs = [
 	{
 		id: 1,
 		category: "general",
-		question: "What is JobOp?",
-		answer: "JobOp is a comprehensive staffing platform that connects talented professionals with companies looking for skilled workers. We use advanced matching algorithms to ensure the best fit for both parties.",
+		question: "What is JobOP?",
+		answer: "JobOP is a comprehensive staffing platform that connects talented professionals with companies looking for skilled workers. We use advanced matching algorithms to ensure the best fit for both parties.",
 	},
 	{
 		id: 2,
@@ -48,7 +48,7 @@ const faqs = [
 	{
 		id: 3,
 		category: "general",
-		question: "Is JobOp free to use?",
+		question: "Is JobOP free to use?",
 		answer: "For job seekers, creating a profile and applying to positions is completely free. Companies pay subscription fees based on their hiring needs and the level of service required.",
 	},
 

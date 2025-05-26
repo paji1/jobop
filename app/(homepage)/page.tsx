@@ -341,62 +341,62 @@ export default function HomePage() {
 									transition={{ duration: 0.8, delay: 1.4 }}
 									className=" absolute   -bottom-12 -left-12 bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-2 z-20"
 								>
-									
-										<Image
-											src="/hero/worker-team.png"
-											alt="Professional team of workers and management"
-											width={200}
-											height={100}
-											style={{ transform: "translate(-16px, 16px)" }}
-											className="mx-auto "
-											priority
-										/>
-										{/* Floating badge on the image */}
-										<motion.div
-											initial={{ opacity: 0, x: 20 }}
-											animate={{ opacity: 1, x: 0 }}
-											transition={{
-												duration: 0.8,
-												delay: 1,
-											}}
-											className="absolute -top-4 -right-4 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-2"
-										>
-											<div className="flex items-center space-x-1">
-												<Users className="h-3 w-3 text-blue-500" />
-												<div>
-													<div className="text-xs font-bold text-gray-900 dark:text-white">
-														50K+
-													</div>
-													<div className="text-xs text-gray-500 dark:text-gray-400">
-														Users
-													</div>
-												
+									<Image
+										src="/hero/worker-team.png"
+										alt="Professional team of workers and management"
+										width={200}
+										height={100}
+										style={{
+											transform: "translate(-16px, 16px)",
+										}}
+										className="mx-auto "
+										priority
+									/>
+									{/* Floating badge on the image */}
+									<motion.div
+										initial={{ opacity: 0, x: 20 }}
+										animate={{ opacity: 1, x: 0 }}
+										transition={{
+											duration: 0.8,
+											delay: 1,
+										}}
+										className="absolute -top-4 -right-4 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-2"
+									>
+										<div className="flex items-center space-x-1">
+											<Users className="h-3 w-3 text-blue-500" />
+											<div>
+												<div className="text-xs font-bold text-gray-900 dark:text-white">
+													50K+
+												</div>
+												<div className="text-xs text-gray-500 dark:text-gray-400">
+													Users
 												</div>
 											</div>
-										</motion.div>
+										</div>
+									</motion.div>
 
-										{/* Floating badge on the left */}
-										<motion.div
-											initial={{ opacity: 0, x: -20 }}
-											animate={{ opacity: 1, x: 0 }}
-											transition={{
-												duration: 0.8,
-												delay: 1.2,
-											}}
-											className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-1"
-										>
-											<div className="flex items-center space-x-1">
-												<Building2 className="h-3 w-3 text-green-500" />
-												<div>
-													<div className="text-xs font-bold text-gray-900 dark:text-white">
-														10K+
-													</div>
-													<div className="text-xs text-gray-500 dark:text-gray-400">
-														Companies
-													</div>
+									{/* Floating badge on the left */}
+									<motion.div
+										initial={{ opacity: 0, x: -20 }}
+										animate={{ opacity: 1, x: 0 }}
+										transition={{
+											duration: 0.8,
+											delay: 1.2,
+										}}
+										className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-1"
+									>
+										<div className="flex items-center space-x-1">
+											<Building2 className="h-3 w-3 text-green-500" />
+											<div>
+												<div className="text-xs font-bold text-gray-900 dark:text-white">
+													10K+
+												</div>
+												<div className="text-xs text-gray-500 dark:text-gray-400">
+													Companies
 												</div>
 											</div>
-										</motion.div>
+										</div>
+									</motion.div>
 								</motion.div>
 							</div>
 						</motion.div>

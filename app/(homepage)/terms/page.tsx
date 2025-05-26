@@ -27,14 +27,14 @@ const sections = [
 		title: "Acceptance of Terms",
 		icon: CheckCircle,
 		content:
-			"By accessing and using JobOp, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.",
+			"By accessing and using JobOP, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.",
 	},
 	{
 		id: "description",
 		title: "Service Description",
 		icon: Users,
 		content:
-			"JobOp is a digital platform that connects job seekers with employers. We provide tools for profile creation, job matching, application management, and communication between parties. We do not guarantee employment or hiring outcomes.",
+			"JobOP is a digital platform that connects job seekers with employers. We provide tools for profile creation, job matching, application management, and communication between parties. We do not guarantee employment or hiring outcomes.",
 	},
 	{
 		id: "user-accounts",
@@ -62,14 +62,14 @@ const sections = [
 		title: "Intellectual Property",
 		icon: FileText,
 		content:
-			"The service and its original content, features, and functionality are owned by JobOp and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.",
+			"The service and its original content, features, and functionality are owned by JobOP and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.",
 	},
 	{
 		id: "limitation-liability",
 		title: "Limitation of Liability",
 		icon: AlertTriangle,
 		content:
-			"In no event shall JobOp be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.",
+			"In no event shall JobOP be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.",
 	},
 ];
 
@@ -104,7 +104,7 @@ export default function TermsPage() {
 						</h1>
 						<p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
 							Please read these terms carefully before using our
-							platform. By using JobOp, you agree to be bound by
+							platform. By using JobOP, you agree to be bound by
 							these terms and conditions.
 						</p>
 						<div className="flex items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">

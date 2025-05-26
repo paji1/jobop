@@ -226,7 +226,7 @@ export default function SkillsOnboardingPage() {
 
 				toast({
 					title: "Profile completed!",
-					description: "Welcome to JobOp. Your profile is now live!",
+					description: "Welcome to JobOP. Your profile is now live!",
 				});
 
 				router.push("/dashboard/staff");
@@ -280,7 +280,7 @@ export default function SkillsOnboardingPage() {
 							<Briefcase className="h-8 w-8 text-white" />
 						</div>
 						<span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-							JobOp
+							JobOP
 						</span>
 					</div>
 					<h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-white">
