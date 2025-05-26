@@ -35,7 +35,7 @@ export function CTASection({
 	return (
 		<section className="py-20 relative overflow-hidden">
 			{/* Background */}
-			<div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
+			<div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 dark:from-background dark:via-background dark:to-gray-900"></div>
 			<GridPattern className="absolute inset-0 opacity-20" />
 			<Meteors number={20} />
 
