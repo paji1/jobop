@@ -28,6 +28,7 @@ import Link from "next/link"
 import { CTASection } from "@/components/sections/cta-section"
 import { Footer } from "@/components/sections/footer"
 import { TestimonialsSection } from "@/components/sections/testimonials-section"
+import { useState } from "react"
 
 // Team data - easily expandable
 const teamMembers = [
@@ -124,6 +125,23 @@ const navItems = [
   },
 ]
 
+// Custom hook to show scroll-to-top button only when not in hero section
+function useShowScrollTop() {
+  const [show, setShow] = useState(false)
+
+  if (typeof window !== "undefined") {
+    // Attach scroll event directly (no useEffect)
+    window.onscroll = () => {
+      const hero = document.getElementById("home")
+      if (!hero) return
+      const heroBottom = hero.getBoundingClientRect().bottom
+      setShow(heroBottom < 0)
+    }
+  }
+
+  return show
+}
+
 export default function HomePage() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -138,8 +156,16 @@ export default function HomePage() {
       })
     }
   }
+
+  // Scroll to top handler
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const showScrollTop = useShowScrollTop()
+
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-white dark:bg-black relative">
       <FloatingNav navItems={navItems} />
 
       {/* Header */}
@@ -620,6 +646,18 @@ export default function HomePage() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg p-3 hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-400"
+          style={{ boxShadow: "0 4px 24px 0 rgba(80, 63, 205, 0.15)" }}
+        >
+          <ArrowRight className="rotate-[-90deg] h-6 w-6" />
+        </button>
+      )}
     </div>
   )
 }
