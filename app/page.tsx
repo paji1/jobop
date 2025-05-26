@@ -141,6 +141,19 @@ const navItems = [
 ];
 
 export default function HomePage() {
+	const scrollToSection = (sectionId: string) => {
+		const element = document.getElementById(sectionId);
+		if (element) {
+			const headerOffset = 0; // Account for fixed header
+			const elementPosition = element.offsetTop;
+			const offsetPosition = elementPosition - headerOffset;
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: "smooth",
+			});
+		}
+	};
 	return (
 		<div className="min-h-screen bg-white dark:bg-black">
 			<FloatingNav navItems={navItems} />
@@ -171,6 +184,31 @@ export default function HomePage() {
 							JobOP
 						</span>
 					</motion.div>
+					<nav className="hidden md:flex items-center space-x-8">
+						<button
+							onClick={() => scrollToSection("home")}
+							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+						>
+							Home
+						</button>
+						<button
+							onClick={() => scrollToSection("features")}
+							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+						>
+							Features
+						</button>
+						<button
+							onClick={() => scrollToSection("team")}
+							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+						>
+							Team
+						</button>
+						<Link href="/contact">
+							<span className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium cursor-pointer">
+								Contact
+							</span>
+						</Link>
+					</nav>
 					<div className="flex items-center space-x-4">
 						<ThemeToggle />
 						<Link href="/auth/login">

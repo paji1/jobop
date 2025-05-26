@@ -40,8 +40,10 @@ import { GridPattern } from "@/components/ui/grid-pattern";
 import { Meteors } from "@/components/ui/meteors";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ContactPage() {
+	const router = useRouter();
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -75,6 +77,11 @@ export default function ContactPage() {
 		}, 1000);
 	};
 
+	const goToSection = (sectionId: string, router: any) => {
+			router.push(`/${sectionId !== "home" ? `#${sectionId}` : ""}`);
+
+		
+	};
 	const contactMethods = [
 		{
 			icon: Mail,
@@ -163,6 +170,31 @@ export default function ContactPage() {
 							JobOP
 						</span>
 					</Link>
+					<nav className="hidden md:flex items-center space-x-8">
+						<button
+							onClick={() => goToSection("home", router)}
+							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+						>
+							Home
+						</button>
+						<button
+							onClick={() => goToSection("features", router)}
+							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+						>
+							Features
+						</button>
+						<button
+							onClick={() => goToSection("team", router)}
+							className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+						>
+							Team
+						</button>
+						<Link href="/contact">
+							<span className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium cursor-pointer">
+								Contact
+							</span>
+						</Link>
+					</nav>
 					<div className="flex items-center space-x-4">
 						<ThemeToggle />
 						<Link href="/auth/login">
