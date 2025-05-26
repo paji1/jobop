@@ -31,9 +31,13 @@ import {
 	User,
 	ArrowRight,
 	ArrowLeft,
+	CheckCircle,
+	Star,
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Spotlight } from "@/components/ui/spotlight";
+import { GridPattern } from "@/components/ui/grid-pattern";
 
 interface Experience {
 	id: string;
@@ -222,7 +226,7 @@ export default function SkillsOnboardingPage() {
 
 				toast({
 					title: "Profile completed!",
-					description: "Welcome to JobOP. Your profile is now live!",
+					description: "Welcome to JobOp. Your profile is now live!",
 				});
 
 				router.push("/dashboard/staff");
@@ -250,98 +254,182 @@ export default function SkillsOnboardingPage() {
 	if (!user) return null;
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-8">
-			<div className="absolute top-4 right-4">
+		<div className="min-h-screen bg-white dark:bg-black relative overflow-hidden">
+			{/* Background Elements */}
+			<Spotlight
+				className="top-40 left-0 md:left-60 md:-top-20"
+				fill="blue"
+			/>
+			<GridPattern className="opacity-20" />
+
+			{/* Floating Orbs */}
+			<div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl"></div>
+			<div className="absolute top-40 right-10 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"></div>
+			<div className="absolute bottom-20 left-1/3 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl"></div>
+
+			{/* Theme Toggle */}
+			<div className="absolute top-6 right-6 z-50">
 				<ThemeToggle />
 			</div>
 
-			<div className="container mx-auto px-4 max-w-4xl">
+			<div className="relative z-10 container mx-auto px-4 py-12 max-w-6xl">
 				{/* Header */}
-				<div className="text-center mb-8">
-					<div className="flex items-center justify-center space-x-2 mb-4">
-						<Briefcase className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-						<span className="text-2xl font-bold dark:text-white">
-							JobOP
+				<div className="text-center mb-12">
+					<div className="flex items-center justify-center space-x-3 mb-6">
+						<div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl">
+							<Briefcase className="h-8 w-8 text-white" />
+						</div>
+						<span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+							JobOp
 						</span>
 					</div>
-					<h1 className="text-3xl font-bold mb-2 dark:text-white">
-						Complete Your Profile
+					<h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-white">
+						Complete Your{" "}
+						<span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+							Professional Profile
+						</span>
 					</h1>
-					<p className="text-gray-600 dark:text-gray-300">
-						Help companies find you by showcasing your skills and
-						experience
+					<p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+						Showcase your skills and experience to connect with top
+						companies looking for talent like yours
 					</p>
 				</div>
 
-				{/* Progress */}
-				<div className="mb-8">
-					<div className="flex items-center justify-between mb-2">
-						<span className="text-sm font-medium dark:text-gray-200">
-							Step {currentStep} of 3
-						</span>
-						<span className="text-sm text-gray-500 dark:text-gray-400">
-							{Math.round((currentStep / 3) * 100)}% complete
-						</span>
+				{/* Progress Section */}
+				<div className="mb-12">
+					<div className="max-w-2xl mx-auto">
+						<div className="flex items-center justify-between mb-4">
+							<span className="text-sm font-medium dark:text-gray-200">
+								Step {currentStep} of 3
+							</span>
+							<span className="text-sm text-gray-500 dark:text-gray-400">
+								{Math.round((currentStep / 3) * 100)}% complete
+							</span>
+						</div>
+						<Progress
+							value={(currentStep / 3) * 100}
+							className="h-3 bg-gray-200 dark:bg-gray-700"
+						/>
+
+						{/* Step Indicators */}
+						<div className="flex justify-between mt-6">
+							{[
+								{
+									step: 1,
+									title: "Skills & Profile",
+									icon: User,
+								},
+								{
+									step: 2,
+									title: "Experience",
+									icon: Briefcase,
+								},
+								{
+									step: 3,
+									title: "Certifications",
+									icon: Award,
+								},
+							].map(({ step, title, icon: Icon }) => (
+								<div
+									key={step}
+									className="flex flex-col items-center"
+								>
+									<div
+										className={`w-12 h-12 rounded-full flex items-center justify-center border-2 mb-2 ${
+											currentStep >= step
+												? "bg-gradient-to-r from-blue-600 to-purple-600 border-transparent text-white"
+												: "border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500"
+										}`}
+									>
+										{currentStep > step ? (
+											<CheckCircle className="h-6 w-6" />
+										) : (
+											<Icon className="h-6 w-6" />
+										)}
+									</div>
+									<span
+										className={`text-sm font-medium ${
+											currentStep >= step
+												? "text-gray-900 dark:text-white"
+												: "text-gray-500 dark:text-gray-400"
+										}`}
+									>
+										{title}
+									</span>
+								</div>
+							))}
+						</div>
 					</div>
-					<Progress value={(currentStep / 3) * 100} className="h-2" />
 				</div>
 
-				{/* Step 1: Skills and Bio */}
-				{currentStep === 1 && (
-					<div className="space-y-6">
-						<Card className="dark:bg-gray-800 dark:border-gray-700">
-							<CardHeader>
-								<CardTitle className="flex items-center dark:text-white">
-									<User className="h-5 w-5 mr-2" />
-									Skills & Profile
+				{/* Step Content */}
+				<div className="max-w-4xl mx-auto">
+					{/* Step 1: Skills and Bio */}
+					{currentStep === 1 && (
+						<Card className="border-0 shadow-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+							<CardHeader className="text-center pb-8">
+								<div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+									<User className="h-8 w-8 text-white" />
+								</div>
+								<CardTitle className="text-2xl dark:text-white">
+									Skills & Professional Profile
 								</CardTitle>
-								<CardDescription className="dark:text-gray-300">
-									Tell us about your skills and what makes you
-									unique
+								<CardDescription className="text-lg dark:text-gray-300">
+									Tell us about your expertise and what makes
+									you unique in your field
 								</CardDescription>
 							</CardHeader>
-							<CardContent className="space-y-6">
+							<CardContent className="space-y-8">
 								{/* Skills Selection */}
-								<div className="space-y-4">
-									<Label className="text-base font-medium dark:text-gray-200">
-										Your Skills *
-									</Label>
-									<p className="text-sm text-gray-600 dark:text-gray-400">
-										Select at least 3 skills that best
-										describe your expertise
-									</p>
+								<div className="space-y-6">
+									<div>
+										<Label className="text-lg font-semibold dark:text-gray-200 mb-3 block">
+											Your Skills *
+										</Label>
+										<p className="text-gray-600 dark:text-gray-400 mb-4">
+											Select at least 3 skills that best
+											describe your expertise
+										</p>
+									</div>
 
 									{/* Selected Skills */}
 									{selectedSkills.length > 0 && (
-										<div className="flex flex-wrap gap-2 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-											{selectedSkills.map((skill) => (
-												<Badge
-													key={skill}
-													variant="default"
-													className="text-sm"
-												>
-													{skill}
-													<Button
-														variant="ghost"
-														size="sm"
-														className="h-4 w-4 p-0 ml-1 hover:bg-transparent"
-														onClick={() =>
-															removeSkill(skill)
-														}
+										<div className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+											<h4 className="font-semibold mb-3 dark:text-white">
+												Selected Skills (
+												{selectedSkills.length})
+											</h4>
+											<div className="flex flex-wrap gap-2">
+												{selectedSkills.map((skill) => (
+													<Badge
+														key={skill}
+														className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 text-sm"
 													>
-														<X className="h-3 w-3" />
-													</Button>
-												</Badge>
-											))}
+														{skill}
+														<Button
+															variant="ghost"
+															size="sm"
+															className="h-4 w-4 p-0 ml-2 hover:bg-white/20"
+															onClick={() =>
+																removeSkill(
+																	skill
+																)
+															}
+														>
+															<X className="h-3 w-3" />
+														</Button>
+													</Badge>
+												))}
+											</div>
 										</div>
 									)}
 
 									{/* Popular Skills */}
 									<div>
-										<Label className="text-sm font-medium mb-2 block dark:text-gray-200">
+										<Label className="text-base font-medium mb-3 block dark:text-gray-200">
 											Popular Skills
 										</Label>
-										<div className="flex flex-wrap gap-2">
+										<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
 											{popularSkills
 												.filter(
 													(skill) =>
@@ -353,7 +441,7 @@ export default function SkillsOnboardingPage() {
 													<Badge
 														key={skill}
 														variant="outline"
-														className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/30 dark:border-gray-600 dark:text-gray-300"
+														className="cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/30 dark:border-gray-600 dark:text-gray-300 p-2 text-center justify-center transition-colors"
 														onClick={() =>
 															addSkill(skill)
 														}
@@ -365,7 +453,7 @@ export default function SkillsOnboardingPage() {
 									</div>
 
 									{/* Custom Skill */}
-									<div className="flex space-x-2">
+									<div className="flex space-x-3">
 										<Input
 											placeholder="Add a custom skill"
 											value={customSkill}
@@ -376,11 +464,12 @@ export default function SkillsOnboardingPage() {
 												e.key === "Enter" &&
 												addCustomSkill()
 											}
-											className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+											className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 										/>
 										<Button
 											onClick={addCustomSkill}
 											disabled={!customSkill.trim()}
+											className="bg-gradient-to-r from-blue-600 to-purple-600"
 										>
 											<Plus className="h-4 w-4" />
 										</Button>
@@ -388,62 +477,63 @@ export default function SkillsOnboardingPage() {
 								</div>
 
 								{/* Bio */}
-								<div className="space-y-2">
+								<div className="space-y-3">
 									<Label
 										htmlFor="bio"
-										className="text-base font-medium dark:text-gray-200"
+										className="text-lg font-semibold dark:text-gray-200"
 									>
 										Professional Bio *
 									</Label>
-									<p className="text-sm text-gray-600 dark:text-gray-400">
+									<p className="text-gray-600 dark:text-gray-400">
 										Write a compelling description of your
 										experience and expertise (minimum 50
 										characters)
 									</p>
 									<Textarea
 										id="bio"
-										placeholder="I'm a passionate developer with expertise in..."
+										placeholder="I'm a passionate developer with expertise in building scalable web applications..."
 										value={bio}
 										onChange={(e) => setBio(e.target.value)}
-										rows={4}
-										className="resize-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+										rows={5}
+										className="resize-none dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 									/>
 									<div className="text-right text-sm text-gray-500 dark:text-gray-400">
 										{bio.length}/50 minimum
 									</div>
 								</div>
 
-								{/* Experience Level */}
-								<div className="space-y-2">
-									<Label className="text-base font-medium dark:text-gray-200">
-										Experience Level
-									</Label>
-									<Select
-										value={experienceLevel}
-										onValueChange={setExperienceLevel}
-									>
-										<SelectTrigger className="dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-											<SelectValue placeholder="Select your experience level" />
-										</SelectTrigger>
-										<SelectContent>
-											{experienceLevels.map((level) => (
-												<SelectItem
-													key={level.value}
-													value={level.value}
-												>
-													{level.label}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-								</div>
+								{/* Experience Level and Rate */}
+								<div className="grid md:grid-cols-2 gap-6">
+									<div className="space-y-3">
+										<Label className="text-lg font-semibold dark:text-gray-200">
+											Experience Level
+										</Label>
+										<Select
+											value={experienceLevel}
+											onValueChange={setExperienceLevel}
+										>
+											<SelectTrigger className="dark:bg-gray-800 dark:border-gray-600 dark:text-white">
+												<SelectValue placeholder="Select your experience level" />
+											</SelectTrigger>
+											<SelectContent>
+												{experienceLevels.map(
+													(level) => (
+														<SelectItem
+															key={level.value}
+															value={level.value}
+														>
+															{level.label}
+														</SelectItem>
+													)
+												)}
+											</SelectContent>
+										</Select>
+									</div>
 
-								{/* Hourly Rate */}
-								<div className="grid grid-cols-2 gap-4">
-									<div className="space-y-2">
+									<div className="space-y-3">
 										<Label
 											htmlFor="rate"
-											className="text-base font-medium dark:text-gray-200"
+											className="text-lg font-semibold dark:text-gray-200"
 										>
 											Hourly Rate ($)
 										</Label>
@@ -455,65 +545,67 @@ export default function SkillsOnboardingPage() {
 											onChange={(e) =>
 												setHourlyRate(e.target.value)
 											}
-											className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-										/>
-									</div>
-									<div className="space-y-2">
-										<Label
-											htmlFor="portfolio"
-											className="text-base font-medium dark:text-gray-200"
-										>
-											Portfolio URL
-										</Label>
-										<Input
-											id="portfolio"
-											type="url"
-											placeholder="https://yourportfolio.com"
-											value={portfolio}
-											onChange={(e) =>
-												setPortfolio(e.target.value)
-											}
-											className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+											className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 										/>
 									</div>
 								</div>
+
+								{/* Portfolio */}
+								<div className="space-y-3">
+									<Label
+										htmlFor="portfolio"
+										className="text-lg font-semibold dark:text-gray-200"
+									>
+										Portfolio URL
+									</Label>
+									<Input
+										id="portfolio"
+										type="url"
+										placeholder="https://yourportfolio.com"
+										value={portfolio}
+										onChange={(e) =>
+											setPortfolio(e.target.value)
+										}
+										className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+									/>
+								</div>
 							</CardContent>
 						</Card>
-					</div>
-				)}
+					)}
 
-				{/* Step 2: Work Experience */}
-				{currentStep === 2 && (
-					<div className="space-y-6">
-						<Card className="dark:bg-gray-800 dark:border-gray-700">
-							<CardHeader>
-								<CardTitle className="flex items-center dark:text-white">
-									<Briefcase className="h-5 w-5 mr-2" />
+					{/* Step 2: Work Experience */}
+					{currentStep === 2 && (
+						<Card className="border-0 shadow-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+							<CardHeader className="text-center pb-8">
+								<div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+									<Briefcase className="h-8 w-8 text-white" />
+								</div>
+								<CardTitle className="text-2xl dark:text-white">
 									Work Experience
 								</CardTitle>
-								<CardDescription className="dark:text-gray-300">
-									Add your work experience to showcase your
-									background (at least 1 required)
+								<CardDescription className="text-lg dark:text-gray-300">
+									Showcase your professional background and
+									achievements (at least 1 required)
 								</CardDescription>
 							</CardHeader>
-							<CardContent className="space-y-6">
+							<CardContent className="space-y-8">
 								{/* Existing Experiences */}
 								{experiences.length > 0 && (
 									<div className="space-y-4">
-										<Label className="text-base font-medium dark:text-gray-200">
+										<Label className="text-lg font-semibold dark:text-gray-200">
 											Your Experience
 										</Label>
 										{experiences.map((exp) => (
 											<div
 												key={exp.id}
-												className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+												className="p-6 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800/50"
 											>
-												<div className="flex justify-between items-start mb-2">
+												<div className="flex justify-between items-start mb-4">
 													<div>
-														<h4 className="font-semibold dark:text-white">
+														<h4 className="text-lg font-semibold dark:text-white">
 															{exp.position}
 														</h4>
-														<p className="text-gray-600 dark:text-gray-400">
+														<p className="text-gray-600 dark:text-gray-400 font-medium">
 															{exp.company} •{" "}
 															{exp.duration}
 														</p>
@@ -531,12 +623,12 @@ export default function SkillsOnboardingPage() {
 													</Button>
 												</div>
 												{exp.description && (
-													<p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+													<p className="text-gray-700 dark:text-gray-300 mb-4">
 														{exp.description}
 													</p>
 												)}
 												{exp.skills.length > 0 && (
-													<div className="flex flex-wrap gap-1">
+													<div className="flex flex-wrap gap-2">
 														{exp.skills.map(
 															(skill) => (
 																<Badge
@@ -556,12 +648,12 @@ export default function SkillsOnboardingPage() {
 								)}
 
 								{/* Add New Experience */}
-								<div className="space-y-4 p-4 border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600">
-									<Label className="text-base font-medium dark:text-gray-200">
+								<div className="space-y-6 p-6 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl">
+									<Label className="text-lg font-semibold dark:text-gray-200">
 										Add Work Experience
 									</Label>
 
-									<div className="grid grid-cols-2 gap-4">
+									<div className="grid md:grid-cols-2 gap-4">
 										<div className="space-y-2">
 											<Label
 												htmlFor="company"
@@ -581,7 +673,7 @@ export default function SkillsOnboardingPage() {
 														company: e.target.value,
 													})
 												}
-												className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+												className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 											/>
 										</div>
 										<div className="space-y-2">
@@ -604,7 +696,7 @@ export default function SkillsOnboardingPage() {
 															e.target.value,
 													})
 												}
-												className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+												className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 											/>
 										</div>
 									</div>
@@ -626,7 +718,7 @@ export default function SkillsOnboardingPage() {
 													duration: e.target.value,
 												})
 											}
-											className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+											className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 										/>
 									</div>
 
@@ -650,7 +742,7 @@ export default function SkillsOnboardingPage() {
 												})
 											}
 											rows={3}
-											className="resize-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+											className="resize-none dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 										/>
 									</div>
 
@@ -702,7 +794,7 @@ export default function SkillsOnboardingPage() {
 											!currentExperience.company ||
 											!currentExperience.position
 										}
-										className="w-full"
+										className="w-full bg-gradient-to-r from-blue-600 to-purple-600"
 									>
 										<Plus className="h-4 w-4 mr-2" />
 										Add Experience
@@ -710,41 +802,41 @@ export default function SkillsOnboardingPage() {
 								</div>
 							</CardContent>
 						</Card>
-					</div>
-				)}
+					)}
 
-				{/* Step 3: Certifications */}
-				{currentStep === 3 && (
-					<div className="space-y-6">
-						<Card className="dark:bg-gray-800 dark:border-gray-700">
-							<CardHeader>
-								<CardTitle className="flex items-center dark:text-white">
-									<Award className="h-5 w-5 mr-2" />
+					{/* Step 3: Certifications */}
+					{currentStep === 3 && (
+						<Card className="border-0 shadow-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+							<CardHeader className="text-center pb-8">
+								<div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+									<Award className="h-8 w-8 text-white" />
+								</div>
+								<CardTitle className="text-2xl dark:text-white">
 									Certifications & Education
 								</CardTitle>
-								<CardDescription className="dark:text-gray-300">
+								<CardDescription className="text-lg dark:text-gray-300">
 									Add your certifications and educational
-									achievements (optional)
+									achievements to stand out (optional)
 								</CardDescription>
 							</CardHeader>
-							<CardContent className="space-y-6">
+							<CardContent className="space-y-8">
 								{/* Existing Certifications */}
 								{certifications.length > 0 && (
 									<div className="space-y-4">
-										<Label className="text-base font-medium dark:text-gray-200">
+										<Label className="text-lg font-semibold dark:text-gray-200">
 											Your Certifications
 										</Label>
 										{certifications.map((cert) => (
 											<div
 												key={cert.id}
-												className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+												className="p-6 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800/50"
 											>
 												<div className="flex justify-between items-start">
 													<div>
-														<h4 className="font-semibold dark:text-white">
+														<h4 className="text-lg font-semibold dark:text-white">
 															{cert.name}
 														</h4>
-														<p className="text-gray-600 dark:text-gray-400">
+														<p className="text-gray-600 dark:text-gray-400 font-medium">
 															{cert.issuer} •{" "}
 															{cert.year}
 														</p>
@@ -775,12 +867,12 @@ export default function SkillsOnboardingPage() {
 								)}
 
 								{/* Add New Certification */}
-								<div className="space-y-4 p-4 border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600">
-									<Label className="text-base font-medium dark:text-gray-200">
+								<div className="space-y-6 p-6 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl">
+									<Label className="text-lg font-semibold dark:text-gray-200">
 										Add Certification
 									</Label>
 
-									<div className="grid grid-cols-2 gap-4">
+									<div className="grid md:grid-cols-2 gap-4">
 										<div className="space-y-2">
 											<Label
 												htmlFor="certName"
@@ -800,7 +892,7 @@ export default function SkillsOnboardingPage() {
 														name: e.target.value,
 													})
 												}
-												className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+												className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 											/>
 										</div>
 										<div className="space-y-2">
@@ -822,12 +914,12 @@ export default function SkillsOnboardingPage() {
 														issuer: e.target.value,
 													})
 												}
-												className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+												className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 											/>
 										</div>
 									</div>
 
-									<div className="grid grid-cols-2 gap-4">
+									<div className="grid md:grid-cols-2 gap-4">
 										<div className="space-y-2">
 											<Label
 												htmlFor="year"
@@ -847,7 +939,7 @@ export default function SkillsOnboardingPage() {
 														year: e.target.value,
 													})
 												}
-												className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+												className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 											/>
 										</div>
 										<div className="space-y-2">
@@ -870,7 +962,7 @@ export default function SkillsOnboardingPage() {
 															e.target.value,
 													})
 												}
-												className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+												className="dark:bg-gray-800 dark:border-gray-600 dark:text-white"
 											/>
 										</div>
 									</div>
@@ -881,7 +973,7 @@ export default function SkillsOnboardingPage() {
 											!currentCertification.name ||
 											!currentCertification.issuer
 										}
-										className="w-full"
+										className="w-full bg-gradient-to-r from-blue-600 to-purple-600"
 									>
 										<Plus className="h-4 w-4 mr-2" />
 										Add Certification
@@ -889,50 +981,60 @@ export default function SkillsOnboardingPage() {
 								</div>
 
 								{/* Profile Summary */}
-								<div className="p-4 bg-blue-50 rounded-lg dark:bg-blue-900/20">
-									<h4 className="font-semibold mb-2 dark:text-white">
+								<div className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+									<h4 className="text-lg font-semibold mb-4 dark:text-white flex items-center">
+										<Star className="h-5 w-5 mr-2 text-yellow-500" />
 										Profile Summary
 									</h4>
-									<div className="grid grid-cols-2 gap-4 text-sm dark:text-gray-300">
-										<div>
-											<span className="text-gray-600 dark:text-gray-400">
-												Skills:
-											</span>{" "}
-											{selectedSkills.length}
+									<div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+										<div className="text-center">
+											<div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+												{selectedSkills.length}
+											</div>
+											<div className="text-gray-600 dark:text-gray-400">
+												Skills
+											</div>
 										</div>
-										<div>
-											<span className="text-gray-600 dark:text-gray-400">
-												Experience:
-											</span>{" "}
-											{experiences.length} positions
+										<div className="text-center">
+											<div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+												{experiences.length}
+											</div>
+											<div className="text-gray-600 dark:text-gray-400">
+												Experience
+											</div>
 										</div>
-										<div>
-											<span className="text-gray-600 dark:text-gray-400">
-												Certifications:
-											</span>{" "}
-											{certifications.length}
+										<div className="text-center">
+											<div className="text-2xl font-bold text-green-600 dark:text-green-400">
+												{certifications.length}
+											</div>
+											<div className="text-gray-600 dark:text-gray-400">
+												Certifications
+											</div>
 										</div>
-										<div>
-											<span className="text-gray-600 dark:text-gray-400">
-												Hourly Rate:
-											</span>{" "}
-											{hourlyRate
-												? `$${hourlyRate}`
-												: "Not set"}
+										<div className="text-center">
+											<div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+												{hourlyRate
+													? `$${hourlyRate}`
+													: "—"}
+											</div>
+											<div className="text-gray-600 dark:text-gray-400">
+												Hourly Rate
+											</div>
 										</div>
 									</div>
 								</div>
 							</CardContent>
 						</Card>
-					</div>
-				)}
+					)}
+				</div>
 
 				{/* Navigation */}
-				<div className="flex justify-between">
+				<div className="flex justify-between mt-12 max-w-4xl mx-auto">
 					<Button
 						variant="outline"
 						onClick={prevStep}
 						disabled={currentStep === 1}
+						className="px-8 py-3"
 					>
 						<ArrowLeft className="h-4 w-4 mr-2" />
 						Previous
@@ -945,6 +1047,7 @@ export default function SkillsOnboardingPage() {
 								(currentStep === 1 && !canProceedFromStep1) ||
 								(currentStep === 2 && !canProceedFromStep2)
 							}
+							className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600"
 						>
 							Next
 							<ArrowRight className="h-4 w-4 ml-2" />
@@ -953,7 +1056,7 @@ export default function SkillsOnboardingPage() {
 						<Button
 							onClick={handleComplete}
 							disabled={!canComplete || loading}
-							className="min-w-[120px]"
+							className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 min-w-[160px]"
 						>
 							{loading ? "Completing..." : "Complete Profile"}
 						</Button>
@@ -961,22 +1064,32 @@ export default function SkillsOnboardingPage() {
 				</div>
 
 				{/* Requirements Notice */}
-				{currentStep === 1 && !canProceedFromStep1 && (
-					<div className="text-center text-sm text-gray-600 dark:text-gray-400 mt-4">
-						Please select at least 3 skills and write a bio with
-						minimum 50 characters to continue
-					</div>
-				)}
-				{currentStep === 2 && !canProceedFromStep2 && (
-					<div className="text-center text-sm text-gray-600 dark:text-gray-400 mt-4">
-						Please add at least one work experience to continue
-					</div>
-				)}
-				{currentStep === 3 && (
-					<div className="text-center text-sm text-gray-600 dark:text-gray-400 mt-4">
-						You can complete your profile now.
-					</div>
-				)}
+				<div className="text-center mt-8 max-w-2xl mx-auto">
+					{currentStep === 1 && !canProceedFromStep1 && (
+						<div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+							<p className="text-yellow-800 dark:text-yellow-200">
+								Please select at least 3 skills and write a bio
+								with minimum 50 characters to continue
+							</p>
+						</div>
+					)}
+					{currentStep === 2 && !canProceedFromStep2 && (
+						<div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+							<p className="text-yellow-800 dark:text-yellow-200">
+								Please add at least one work experience to
+								continue
+							</p>
+						</div>
+					)}
+					{currentStep === 3 && (
+						<div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+							<p className="text-green-800 dark:text-green-200">
+								Great! You can complete your profile now.
+								Certifications are optional but recommended.
+							</p>
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);
