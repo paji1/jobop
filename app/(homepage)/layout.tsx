@@ -12,12 +12,7 @@ export default function HomeLayout({
 }) {
 	return (
 		<main>
-			<ThemeProvider
-				attribute="class"
-				defaultTheme="system"
-				enableSystem
-				disableTransitionOnChange
-			>
+			
 				<SidebarHomeProvider>
 					<NavBar />
 					
@@ -26,7 +21,6 @@ export default function HomeLayout({
 					<Footer />
 					<Toaster />
 				</SidebarHomeProvider>
-			</ThemeProvider>
 		</main>
 	);
 }
