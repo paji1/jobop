@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import HomeSidebar from "../sidebar/home-sidebar";
 
 function NavBar() {
 	const router = useRouter();
@@ -82,7 +83,7 @@ function NavBar() {
 						</span>
 					</Link>
 				</nav>
-				<div className="flex items-center space-x-4">
+				<div className="hidden md:flex items-center space-x-2 md:space-x-4">
 					<ThemeToggle />
 					<Link href="/auth/login">
 						<Button
@@ -93,10 +94,21 @@ function NavBar() {
 						</Button>
 					</Link>
 					<Link href="/auth/register">
-						<Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+						<Button className="   bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
 							Get Started
 						</Button>
 					</Link>
+				</div>
+				<div className="md:hidden flex items-center space-x-2">
+					<Link href="/auth/register">
+						<Button
+							className=" md:w-full  bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+							size={"sm"}
+						>
+							Get Started
+						</Button>
+					</Link>
+					<HomeSidebar />
 				</div>
 			</div>
 		</motion.header>

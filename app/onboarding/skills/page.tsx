@@ -99,8 +99,8 @@ const experienceLevels = [
 ];
 
 export default function SkillsOnboardingPage() {
-	const user = useStore((state) => state.user);
-	const setUser = useStore((state) => state.setUser);
+	const user = useStore((state : any) => state.user);
+	const setUser = useStore((state :any) => state.setUser);
 	const router = useRouter();
 	const { toast } = useToast();
 

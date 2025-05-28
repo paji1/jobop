@@ -39,7 +39,7 @@ export default function LoginPage() {
 	const [loading, setLoading] = useState(false);
 	const { toast } = useToast();
 	const router = useRouter();
-	const setUser = useStore((state) => state.setUser);
+	const setUser = useStore((state : any) => state.setUser);
 
 	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -112,7 +112,18 @@ export default function LoginPage() {
 							JobOP
 						</span>
 					</Link>
-					<ThemeToggle />
+					<div className=" flex items-center space-x-2 md:space-x-4">
+						<Link href="/auth/register">
+							<Button className="   bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+								register
+							</Button>
+						</Link>
+						<ThemeToggle />
+					</div>
+					{/* <div className="hidden md:flex items-center justify-center">
+						<ThemeToggle />
+
+					</div> */}
 				</div>
 			</motion.header>
 
@@ -123,7 +134,7 @@ export default function LoginPage() {
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, delay: 0.2 }}
-						className="space-y-8 lg:pr-8"
+						className="space-y-8 lg:pr-8 md:hidden"
 					>
 						<div className="space-y-4">
 							<motion.div
@@ -147,12 +158,43 @@ export default function LoginPage() {
 									JobOP
 								</span>
 							</motion.h1>
+						</div>
+					</motion.div>
+					<motion.div
+						initial={{ opacity: 0, x: -50 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className="space-y-8 lg:pr-8 order-2 md:order-1 "
+					>
+						<div className="space-y-4">
+							<motion.div
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.6, delay: 0.4 }}
+								className="md:block hidden"
+							>
+								<Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 px-4 py-2 text-sm font-medium">
+									🔐 Secure Login
+								</Badge>
+							</motion.div>
+
+							<motion.h1
+								initial={{ opacity: 0, y: 30 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.8, delay: 0.6 }}
+								className="md:block hidden text-4xl lg:text-5xl font-bold leading-tight"
+							>
+								Welcome Back to{" "}
+								<span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+									JobOP
+								</span>
+							</motion.h1>
 
 							<motion.p
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.8, delay: 0.8 }}
-								className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+								className="max-md:p-2 text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
 							>
 								Continue your journey to connect with top talent
 								or find your next opportunity. Your dashboard is

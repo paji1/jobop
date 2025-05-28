@@ -131,11 +131,13 @@ export default function HomePage() {
 	const showScrollTop = useShowScrollTop();
 
 	return (
-		<div className="min-h-screen bg-white dark:bg-black relative">
-			<FloatingNav navItems={navItems} />
+		<div className="min-h-screen max-md:px-1 bg-white w-full dark:bg-black relative">
+			<div className="hidden md:block">
+				<FloatingNav navItems={navItems} />
+			</div>
 
 			{/* Hero Section */}
-			<HeroHighlight containerClassName="relative overflow-hidden h-full flex items-center">
+			<HeroHighlight containerClassName="relative overflow-hidden h-full flex items-center w-full">
 				<Spotlight
 					className="absolute -top-40 left-0 md:left-60 md:-top-20"
 					fill="blue"
@@ -182,7 +184,7 @@ export default function HomePage() {
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.8, delay: 0.8 }}
-									className="text-base md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg"
+									className="text-[14px] md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg"
 								>
 									Our AI-powered platform matches companies
 									with verified professionals based on skills,

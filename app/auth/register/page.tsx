@@ -57,7 +57,7 @@ export default function RegisterPage() {
 	const [loading, setLoading] = useState(false);
 	const { toast } = useToast();
 	const router = useRouter();
-	const setUser = useStore((state) => state.setUser);
+	const setUser = useStore((state: any) => state.setUser);
 
 	const handleRegister = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -139,18 +139,25 @@ export default function RegisterPage() {
 							JobOP
 						</span>
 					</Link>
-					<ThemeToggle />
+					<div className=" flex items-center space-x-2 md:space-x-4">
+						<Link href="/auth/login">
+							<Button className="   bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+								Login
+							</Button>
+						</Link>
+						<ThemeToggle />
+					</div>
 				</div>
 			</motion.header>
 
 			<div className="flex items-center justify-center min-h-[calc(100vh-100px)] p-4 relative z-10">
-				<div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto w-full">
+				<div className="grid  lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto w-full">
 					{/* Left Content */}
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, delay: 0.2 }}
-						className="space-y-8 lg:pr-8"
+						className=" md:hidden space-y-8 lg:pr-8  "
 					>
 						<div className="space-y-4">
 							<motion.div
@@ -174,12 +181,43 @@ export default function RegisterPage() {
 									JobOP
 								</span>
 							</motion.h1>
+						</div>
+					</motion.div>
+					<motion.div
+						initial={{ opacity: 0, x: -50 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className="space-y-8 lg:pr-8 order-2 md:order-1 "
+					>
+						<div className="space-y-4">
+							<motion.div
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.6, delay: 0.4 }}
+								className="hidden md:block"
+							>
+								<Badge className="bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 px-4 py-2 text-sm font-medium">
+									🚀 Join the Community
+								</Badge>
+							</motion.div>
+
+							<motion.h1
+								initial={{ opacity: 0, y: 30 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.8, delay: 0.6 }}
+								className="hidden md:block text-4xl lg:text-5xl font-bold leading-tight"
+							>
+								Start Your Journey with{" "}
+								<span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+									JobOP
+								</span>
+							</motion.h1>
 
 							<motion.p
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.8, delay: 0.8 }}
-								className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+								className="max-md:p-2 text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
 							>
 								Join thousands of professionals and companies
 								who trust JobOP for their talent needs. Create

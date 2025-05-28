@@ -148,7 +148,7 @@ export interface FilterState {
 }
 
 export default function FindStaffPage() {
-	const user = useStore((state) => state.user);
+	const user = useStore((state : any) => state.user);
 	const router = useRouter();
 	const [staffData, setStaffData] = useState<Staff[]>(mockStaffData);
 	const [filteredStaff, setFilteredStaff] = useState<Staff[]>(mockStaffData);
