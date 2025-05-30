@@ -11,16 +11,15 @@ export default function HomeLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<main>
-			
-				<SidebarHomeProvider>
-					<NavBar />
-					
-					{children}
+		<>
+			<SidebarHomeProvider>
+				<NavBar />
 
-					<Footer />
-					<Toaster />
-				</SidebarHomeProvider>
-		</main>
+				{children}
+
+				<Footer />
+				<Toaster />
+			</SidebarHomeProvider>
+		</>
 	);
 }
